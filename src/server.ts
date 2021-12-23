@@ -2,9 +2,13 @@ import express, { Request, Response, NextFunction } from "express";
 import "express-async-errors";
 import "reflect-metadata";
 import { router } from "./routes";
+import cors from "cors";
 // JS importa aruivos index automaticamente
 import "./database";
 const app = express();
+
+// Habilita que outras fontes, externas ou front end, possam acessar sua API
+app.use(cors());
 
 // Prepara express para receber json
 app.use(express.json());
