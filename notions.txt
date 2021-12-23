@@ -1,0 +1,91 @@
+* Node.js = Javascript + V8
+  Cria uma aplicação back-end para que sejam feitas requisições, respostas e acesso ao banco de dados.
+
+  Realiza funções que não bloqueiam requisições (non-block IO (input e output)), são funções assíncronas
+
+
+- server.ts -> ( Controller, acesso ao req e res ) -> SERVICE (Validação e verificação antes que a requisição seja enviada para um banco de dados) -> Repositories -> Banco de Dados
+
+Pesquise sobre services, solides, clean code, etc
+
+O que o projeto faz?
+NLW valoriza
+- Cadastro de tags (possíveis elogios), feito somente por um usuário administrador
+- Cadastro de elogios
+  - Id do user que recebe os elogios
+  - Id do user que envia elogios
+  - Id da tag
+  - Data da ciação
+
+- Autenticação do udsuário
+  - Gerar token JWT
+  - Validar usuário logado nas rotas necessárias
+
+- Listagem de usuários
+- Listagem de tags
+- Listagem de elogios por usuáerio
+
+Para que serve o Insomnia e o Postman?
+ - Quando criamos, temos rotas e recursos e nós precisamos acessar as requisições que estamos fazendo.
+
+E o beekeeper?
+- Gerenciador de banco de dados (acesso às tabelas)
+
+
+O que é uma API?
+  É um conceito que se entende sobre a criação de um projeto (padrões em um projeto que o definem como uma API)
+
+  Aplicações que contém front e back nela mesma precisam executar tudo (lentidão no server, requer mais recursos e não é flexível (multiplataforma, precisaria criar outra), além de possíveis erros) = solução é a API
+
+  API - Divisão entre client (HTML, CSS, JS) e server (Regra de negócio, acesso ao banco de dados, autenticação) - cliente solicita (requisição //rotas) e o server retorna uma resposta (response)
+
+  Para se ter uma API, deve-se ter um server com recursos nela (rotas => http://algumacoisa.com/recurso => Method - recurso, como GET po exemplo), Hoje em dia, é comum que uma API retorne um JSON.
+
+
+
+O Typescript
+  Ferramenta de tipagem de objetos (cria identidades) => Previne erros
+
+  ATENÇÂO: Só é utilizado em ambiente de desenvolvimento. Quando passa para a produção, ele deve ser convertido para JS, compilação (Node entende)
+
+  nomeDaVariavel:tipodaVariavel
+
+  ou
+
+Ex)
+  interface Usuario {
+    nome: string,
+    email: string,
+    telefone: string? //Ponto de interrogação torna esse valor opcional (pode ou não ser inserido)
+  }
+
+  function enviarEmail({email, nomr, telefone}: Usuario){
+    ...
+  }
+
+//Passe parametro como objeto
+  enviarEmail({
+    nome: "Tado",
+    email: "...",
+    telefone: "xxxxxxxxxx"
+  });
+
+  Início com TS
+
+  npm i typescript -D
+  npx tsc --init //npx executa biliotecas já instaladas pelo npm
+
+  Dica: no tsconfig criado, mude strict para false. Express e outras bibliotecas precisam ter seus types instalados (se vc n usa, ficam três pontinhos nos parâmetros passados para funções)
+
+  npm i @types/express -D
+
+  npm i ts-node-dev -D //Evita de ter que ficar fazendo conversões de TS pra JS
+
+  O que é uma migration? 
+    Controle de versionamento de tabelas em uma aplicação. Permite ser executada para garantir continuidade de um trabalho com banco de dados.
+
+  O que é o CLI?
+    Ferramenta do terminal 
+
+  O que é JWT? 
+    Json Web Tokens = padrão de token para criar comunicações com tokens (criptografias), para fazer verificações, validações, etc. Ele é passado entre as requisições. É uma biblioteca que gera esse token.
